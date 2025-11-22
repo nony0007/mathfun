@@ -9,50 +9,53 @@
 <body class="theme-classic">
 <div class="start-screen">
   <h1>Math Fun Challenge</h1>
+  <p>Enter your name:</p>
+  <input type="text" id="player-name" placeholder="Your Name" />
   <p>Choose your difficulty/age group:</p>
   <select id="difficulty-select">
-    <option value="easy">Age 10‑11</option>
-    <option value="medium">Age 11‑12</option>
-    <option value="hard">Age 12‑13</option>
+    <option value="easy">Age 10-11</option>
+    <option value="medium">Age 11-12</option>
+    <option value="hard">Age 12-13</option>
   </select>
   <p>Select number of questions:</p>
   <select id="num-questions">
     <option value="5">5 Questions</option>
-    <option value="10" selected>10 Questions</option>
+    <option value="10">10 Questions</option>
     <option value="15">15 Questions</option>
   </select>
   <p>Select theme:</p>
   <select id="theme-select">
     <option value="classic">Classic</option>
-    <option value="dark">Dark Mode</option>
+    <option value="dark">Dark</option>
     <option value="neon">Neon</option>
     <option value="galaxy">Galaxy</option>
   </select>
-  <p class="note">Try to beat the top scores!</p>
   <button id="start-btn">Start Game</button>
   <h2>High Scores</h2>
   <ul id="high-scores"></ul>
-  <h2>Chat Room</h2>
-  <div id="chat-box">
+  <h2>Cheat Chat</h2>
+  <div class="chat-box">
     <ul id="chat-messages"></ul>
-    <input type="text" id="chat-input" placeholder="Type a message...">
-    <button id="chat-send-btn">Send</button>
+    <div class="chat-input">
+      <input type="text" id="chat-input" placeholder="Type a message" />
+      <button id="send-btn">Send</button>
+    </div>
   </div>
 </div>
 <div class="container" style="display:none;">
   <h2 id="question"></h2>
-  <input type="number" id="answer-input" placeholder="Enter your answer">
-  <div class="action-buttons">
+  <input type="number" id="answer-input" placeholder="Enter your answer" />
+  <div class="buttons">
     <button id="submit-btn">Submit</button>
     <button id="cheat-btn">Cheat</button>
   </div>
   <p id="feedback"></p>
-  <p id="score"></p>
+  <p>Score: <span id="score">0</span></p>
   <div class="progress-bar">
-    <div class="progress" style="width:0%"></div>
+    <div class="progress"></div>
   </div>
-  <button id="next-btn" style="display:none;">Next Question</button>
+  <button id="next-btn" disabled>Next Question</button>
 </div>
-<script src="script.js?v=5"></script>
+<script src="script.js?v=6"></script>
 </body>
 </html>
