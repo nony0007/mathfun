@@ -3,22 +3,23 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Math Fun Notebook</title>
+<title>Math Fun Game</title>
 <link rel="stylesheet" href="style.css">
 </head>
 <body>
-<div class="container">
-  <h1>Math Fun Notebook</h1>
-  <p class="instructions">Solve the problem below. Choose the correct answer!</p>
-  <div id="question"></div>
-  <div id="choices"></div>
-  <div id="feedback"></div>
-  <div id="score">Score: 0</div>
-  <div id="progress">
-    <div id="progress-bar"></div>
+  <div class="container">
+    <h1>Math Fun Game</h1>
+    <p class="instructions">Solve the problem below and type your answer!</p>
+    <div id="question"></div>
+    <input type="number" id="answer-input" placeholder="Enter your answer" />
+    <button id="submit-btn">Submit</button>
+    <div id="feedback"></div>
+    <div id="score">Score: 0</div>
+    <div id="progress">
+      <div id="progress-bar"></div>
+    </div>
+    <button id="next-btn" disabled>Next Question</button>
   </div>
-  <button id="next-btn" disabled>Next Question</button>
-</div>
 <script src="script.js"></script>
 </body>
 </html>
