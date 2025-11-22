@@ -4,20 +4,22 @@ const totalQuestions = 10;
 let correctAnswer;
 
 const questionElement = document.getElementById('question');
-const answersElement = document.getElementById('answers');
+const inputElement = document.getElementById('answer-input');
 const feedbackElement = document.getElementById('feedback');
 const scoreElement = document.getElementById('score');
 const progressBar = document.getElementById('progress-bar');
-const nextButton = document.getElementById('next-btn');
+const submitBtn = document.getElementById('submit-btn');
+const nextBtn = document.getElementById('next-btn');
 
 function getRandomInt(min, max) {
   return Math.floor(Math.random() * (max - min + 1)) + min;
 }
 
 function generateQuestion() {
-  const operations = ['+', '-', '\u00d7', '\u00f7'];
+  const operations = ['+', '-', '×', '÷'];
   const op = operations[Math.floor(Math.random() * operations.length)];
   let a, b;
+
   if (op === '+') {
     a = getRandomInt(0, 50);
     b = getRandomInt(0, 50);
@@ -26,58 +28,60 @@ function generateQuestion() {
     a = getRandomInt(0, 50);
     b = getRandomInt(0, a);
     correctAnswer = a - b;
-  } else if (op === '\u00d7') {
+  } else if (op === '×') {
     a = getRandomInt(0, 12);
     b = getRandomInt(0, 12);
     correctAnswer = a * b;
-  } else if (op === '\u00f7') {
+  } else if (op === '÷') {
     b = getRandomInt(1, 12);
     correctAnswer = getRandomInt(0, 12);
     a = correctAnswer * b;
   }
-  questionElement.textContent = `${a} ${op} ${b} = ?`;
 
-  answersElement.innerHTML = '';
-  let choices = new Set();
-  choices.add(correctAnswer);
-  while (choices.size < 4) {
-    let wrong = correctAnswer + getRandomInt(-10, 10);
-    if (wrong === correctAnswer || wrong < 0) continue;
-    choices.add(wrong);
-  }
-  const shuffled = Array.from(choices).sort(() => Math.random() - 0.5);
-  shuffled.forEach(choice => {
-    const btn = document.createElement('button');
-    btn.className = 'answer';
-    btn.textContent = choice;
-    btn.onclick = () => checkAnswer(choice);
-    answersElement.appendChild(btn);
-  });
+  questionElement.textContent = `${a} ${op} ${b} = ?`;
 }
 
-function checkAnswer(answer) {
-  if (answer === correctAnswer) {
-    feedbackElement.textContent = 'Correct!';
+function checkAnswer() {
+  const userValue = parseFloat(inputElement.value);
+  if (isNaN(userValue)) {
+    feedbackElement.textContent = 'Please enter a number.';
+    return;
+  }
+  if (Math.abs(userValue - correctAnswer) < 0.0001) {
+    feedbackElement.textContent = 'Correct! 🎉';
     score++;
-    scoreElement.textContent = score;
   } else {
     feedbackElement.textContent = `Oops! The correct answer was ${correctAnswer}.`;
   }
+  scoreElement.textContent = `Score: ${score}`;
   questionCount++;
-  progressBar.style.width = ((questionCount / totalQuestions) * 100) + '%';
-  if (questionCount >= totalQuestions) {
-    questionElement.textContent = 'Great job!';
-    answersElement.innerHTML = '';
-    nextButton.disabled = true;
+  progressBar.style.width = `${(questionCount / totalQuestions) * 100}%`;
+  submitBtn.disabled = true;
+  inputElement.disabled = true;
+  nextBtn.disabled = false;
+  if (questionCount === totalQuestions) {
     feedbackElement.textContent += ' Game over!';
+    nextBtn.disabled = true;
+    inputElement.disabled = true;
+    submitBtn.disabled = true;
   }
 }
 
-nextButton.addEventListener('click', () => {
-  feedbackElement.textContent = '';
+function nextQuestion() {
   if (questionCount < totalQuestions) {
     generateQuestion();
+    inputElement.value = '';
+    inputElement.disabled = false;
+    feedbackElement.textContent = '';
+    submitBtn.disabled = false;
+    nextBtn.disabled = true;
   }
-});
+}
 
+submitBtn.addEventListener('click', checkAnswer);
+nextBtn.addEventListener('click', nextQuestion);
+
+// Initialize first question
 generateQuestion();
+submitBtn.disabled = false;
+nextBtn.disabled = true;
