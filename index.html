@@ -7,12 +7,27 @@
 <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <div class="container">
+  <div class="start-screen">
     <h1>Math Fun Game</h1>
-    <p class="instructions">Solve the problem below and type your answer!</p>
+    <p>Choose your difficulty level:</p>
+    <select id="difficulty-select">
+      <option value="easy">Easy (0-10)</option>
+      <option value="medium">Medium (0-50)</option>
+      <option value="hard">Hard (0-100)</option>
+    </select>
+    <button id="start-btn">Start Game</button>
+    <p class="note">Try to beat the high score!</p>
+    <div id="high-scores"></div>
+  </div>
+  <div class="container" style="display:none;">
+    <h1>Math Fun Game</h1>
+    <p class="instructions">Solve the problem below!</p>
     <div id="question"></div>
     <input type="number" id="answer-input" placeholder="Enter your answer" />
-    <button id="submit-btn">Submit</button>
+    <div class="action-buttons">
+      <button id="submit-btn">Submit</button>
+      <button id="cheat-btn">Cheat 🤫</button>
+    </div>
     <div id="feedback"></div>
     <div id="score">Score: 0</div>
     <div id="progress">
@@ -20,6 +35,6 @@
     </div>
     <button id="next-btn" disabled>Next Question</button>
   </div>
-<script src="script.js?v=1"></script>
+<script src="script.js?v=2"></script>
 </body>
 </html>
