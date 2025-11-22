@@ -1,40 +1,38 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Math Fun Game</title>
-<link rel="stylesheet" href="style.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Math Fun Challenge</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <div class="start-screen">
-    <h1>Math Fun Game</h1>
-    <p>Choose your difficulty level:</p>
-    <select id="difficulty-select">
-      <option value="easy">Easy (0-10)</option>
-      <option value="medium">Medium (0-50)</option>
-      <option value="hard">Hard (0-100)</option>
-    </select>
-    <button id="start-btn">Start Game</button>
-    <p class="note">Try to beat the high score!</p>
-    <div id="high-scores"></div>
-  </div>
-  <div class="container" style="display:none;">
-    <h1>Math Fun Game</h1>
-    <p class="instructions">Solve the problem below!</p>
-    <div id="question"></div>
-    <input type="number" id="answer-input" placeholder="Enter your answer" />
-    <div class="action-buttons">
-      <button id="submit-btn">Submit</button>
-      <button id="cheat-btn">Cheat 🤫</button>
+    <div class="start-screen">
+        <h1>Math Fun Challenge</h1>
+        <p>Choose your difficulty / age group:</p>
+        <select id="difficulty-select">
+            <option value="easy">Easy (Age 10-11)</option>
+            <option value="medium">Medium (Age 11-12)</option>
+            <option value="hard">Hard (Age 12-13)</option>
+        </select>
+        <button id="start-btn">Start Game</button>
+        <p class="note">Try to beat the top scores!</p>
+        <div id="high-scores"></div>
     </div>
-    <div id="feedback"></div>
-    <div id="score">Score: 0</div>
-    <div id="progress">
-      <div id="progress-bar"></div>
+    <div class="container" style="display:none;">
+        <h1>Math Fun Challenge</h1>
+        <p class="instructions">Solve the problem below!</p>
+        <div id="question"></div>
+        <input type="number" id="answer-input" placeholder="Enter your answer" />
+        <div id="feedback"></div>
+        <div class="action-buttons">
+            <button id="submit-btn">Submit</button>
+            <button id="cheat-btn">Cheat</button>
+            <button id="next-btn" style="display:none;">Next Question</button>
+        </div>
+        <p>Score: <span id="score">0</span></p>
+        <div class="progress-bar"><div class="progress" style="width:0%"></div></div>
     </div>
-    <button id="next-btn" disabled>Next Question</button>
-  </div>
-<script src="script.js?v=2"></script>
+    <script src="script.js?v=3"></script>
 </body>
 </html>
